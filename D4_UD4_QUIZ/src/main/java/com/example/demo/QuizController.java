@@ -35,7 +35,6 @@ public class QuizController {
     	
     	int puntos = 0;
     	
-    	//logina para manejar respuesta y actualizar sesión
     	//manejar la respuesta de la pregunta 1 (radio button)
         if (respuesta.equals("gryffindor")) {
             puntos = 4;
@@ -65,7 +64,7 @@ public class QuizController {
     		String[] opciones, 
     		HttpSession session) {
         int puntos = 0;
-        // Lógica para manejar la respuesta de la pregunta 2 (checkbox)
+        // Gestión respuesta de la pregunta 2 (checkbox)
         // asignar puntos según las opciones seleccionadas
         if (opciones != null) {
             puntos = opciones.length; 
@@ -88,8 +87,8 @@ public class QuizController {
     		@RequestParam(name = "respuesta") String respuesta, 
     		HttpSession session) {
         int puntos = 0;
-        // Lógica para manejar la respuesta de la pregunta 3 (select)
-        // Puedes asignar puntos según la opción seleccionada
+        // Gestión respuesta de la pregunta 3 (select)
+        // asignar puntos según la opción seleccionada
         if (respuesta.equals("minerva")) {
             puntos = 4;
         } else if (respuesta.equals("snape")) {
@@ -118,7 +117,7 @@ public class QuizController {
             HttpSession session) {
         int puntos = 0;
 
-        // Lógica para manejar la respuesta de la pregunta 4 (botones)
+        // Gestión de la respuesta de la pregunta 4 (botones)
         switch (respuesta) {
             case "gloria":
                 puntos = 4;
@@ -162,18 +161,18 @@ public class QuizController {
         return "finalResultado";
     }//finalizar
     
-//    private int obtenerPuntos(HttpSession session) {
-//        return (int) session.getAttribute("puntos");
-//    }//obtenerPts
-    
     private int obtenerPuntos(HttpSession session) {
-        Integer puntos = (Integer) session.getAttribute("puntos");
-        return (puntos != null) ? puntos.intValue() : 0;
-    }
+        return (int) session.getAttribute("puntos");
+    }//obtenerPts
+    
+//    private int obtenerPuntos(HttpSession session) {
+//        Integer puntos = (Integer) session.getAttribute("puntos");
+//        return (puntos != null) ? puntos.intValue() : 0;
+//    }
 
     
     private Clasificacion calcularClasificacion(int puntos) {
-        // Lógica para determinar la clasificación según los puntos
+        // determinar la clasificación según los puntos
         if (puntos >= 10) {
             return Clasificacion.gryffindor;
         } else if (puntos >= 7) {
