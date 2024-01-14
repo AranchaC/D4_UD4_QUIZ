@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta 1</title>
+</head>
+<body>
+
+<h2>Pregunta 1: ¿Qué palabra te describe mejor?</h2>
+
+<form method="post" action="/pregunta1">
+    <!-- Pregunta para Gryffindor -->
+    <input type="radio" name="respuesta" value="gryffindor"> Valentía<br>
+
+    <!-- Pregunta para Hufflepuff -->
+    <input type="radio" name="respuesta" value="hufflepuff"> Lealtad<br>
+
+    <!-- Pregunta para Slytherin -->
+    <input type="radio" name="respuesta" value="slytherin"> Liderazgo<br>
+
+    <!-- Pregunta para Ravenclaw -->
+    <input type="radio" name="respuesta" value="ravenclaw"> Inteligencia<br>
+
+    <input type="submit" value="Siguiente">
+</form>
+
+</body>
+</html>
+
