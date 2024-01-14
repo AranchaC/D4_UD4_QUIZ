@@ -1,0 +1,40 @@
+<!-- pregunta4.html -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta 4</title>
+</head>
+<body>
+
+<h2>Pregunta 4: Dada la opción, preferirías inventar una poción que garantizara:</h2>
+<br>
+
+<img src="/images/img4.jpg" alt="" width="500">
+<br>
+
+<form method="post" action="/pregunta4">
+    <!-- Opciones de asignaturas -->
+    <button type="submit" name="respuesta" value="gloria">Gloria</button>
+    <button type="submit" name="respuesta" value="sabiduria">Sabiduría</button>
+    <button type="submit" name="respuesta" value="amor">Amor</button>
+    <button type="submit" name="respuesta" value="poder">Poder</button>
+<br><br>
+    <input class="boton" type="submit" value="Siguiente">
+</form>
+
+    <style>
+        /* Estilo CSS para hacer el botón más grande */
+        .boton {
+            font-size: 20px; /* Tamaño del texto del botón */
+            padding: 10px 20px; /* Relleno del botón (arriba y abajo, izquierda y derecha) */
+        }
+        
+        button {
+			padding: 5px 5px;
+		}
+    </style>
+
+</body>
+</html>

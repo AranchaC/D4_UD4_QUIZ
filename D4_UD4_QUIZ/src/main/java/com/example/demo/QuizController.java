@@ -38,13 +38,13 @@ public class QuizController {
     	//logina para manejar respuesta y actualizar sesión
     	//manejar la respuesta de la pregunta 1 (radio button)
         if (respuesta.equals("gryffindor")) {
-            puntos = 5;
-        } else if (respuesta.equals("hufflepuff")) {
-            puntos = 2;
-        } else if (respuesta.equals("slytherin")) {
             puntos = 4;
-        } else if (respuesta.equals("ravenclaw")) {
+        } else if (respuesta.equals("hufflepuff")) {
+            puntos = 1;
+        } else if (respuesta.equals("slytherin")) {
             puntos = 3;
+        } else if (respuesta.equals("ravenclaw")) {
+            puntos = 2;
         }
 
         // Actualizar la sesión con los puntos obtenidos
@@ -91,21 +91,60 @@ public class QuizController {
         // Lógica para manejar la respuesta de la pregunta 3 (select)
         // Puedes asignar puntos según la opción seleccionada
         if (respuesta.equals("minerva")) {
-            puntos = 1;
-        } else if (respuesta.equals("snape")) {
-            puntos = 2;
-        } else if (respuesta.equals("flitwick")) {
-            puntos = 3;
-        } else if (respuesta.equals("sprout")) {
             puntos = 4;
+        } else if (respuesta.equals("snape")) {
+            puntos = 3;
+        } else if (respuesta.equals("flitwick")) {
+            puntos = 2;
+        } else if (respuesta.equals("sprout")) {
+            puntos = 1;
         } 
 
         // Actualizar la sesión con los puntos obtenidos
         int puntosActuales = obtenerPuntos(session);
         session.setAttribute("puntos", puntosActuales + puntos);
 
-        return "finalResultado";
+        return "pregunta4";
     }//preg3
+    
+    @GetMapping("/pregunta4")
+    public String pregunta4() {
+        return "pregunta4";
+    }
+
+    @PostMapping("/pregunta4")
+    public String pregunta4(
+            @RequestParam(name = "respuesta") String respuesta,
+            HttpSession session) {
+        int puntos = 0;
+
+        // Lógica para manejar la respuesta de la pregunta 4 (botones)
+        switch (respuesta) {
+            case "gloria":
+                puntos = 4;
+                break;
+            case "poder":
+                puntos = 3;
+                break;
+            case "sabiduria":
+                puntos = 2;
+                break;
+            case "amor":
+                puntos = 1;
+                break;
+
+            default:
+                // para valores no esperados
+                break;
+        }
+
+        // Actualizar la sesión con los puntos obtenidos
+        int puntosActuales = obtenerPuntos(session);
+        session.setAttribute("puntos", puntosActuales + puntos);
+
+        // Redirigir a la página final
+        return "finalResultado";
+    }
     
     @PostMapping("/finalResultado")
     public String finalizar(
@@ -136,13 +175,13 @@ public class QuizController {
     private Clasificacion calcularClasificacion(int puntos) {
         // Lógica para determinar la clasificación según los puntos
         if (puntos >= 10) {
-            return Clasificacion.GRYFFINDOR;
+            return Clasificacion.gryffindor;
         } else if (puntos >= 7) {
-            return Clasificacion.RAVENCLAW;
+            return Clasificacion.ravenclaw;
         } else if (puntos >= 4) {
-            return Clasificacion.SLYTHERIN;
+            return Clasificacion.slytherin;
         } else {
-            return Clasificacion.HUFFLEPUFF;
+            return Clasificacion.hufflepuff;
         }
     }//calcularClasi
 }

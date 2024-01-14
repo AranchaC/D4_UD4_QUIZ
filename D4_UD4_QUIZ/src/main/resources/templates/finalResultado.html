@@ -8,12 +8,24 @@
 <body>
 
 <h2>¡Quiz Finalizado!</h2>
+<br><br>
+    <p th:text="'Clasificación: ' + ${resultado.clasificacion}" />
 
-<p>Tus puntos totales: <span th:text="${resultado.puntos}"></span></p>
+<!-- Verificar si resultado y resultado.clasificacion no son nulos -->
+<div th:if="${resultado != null and resultado.clasificacion != null}">
+    <!-- Condición para mostrar imágenes según la clasificación -->
+    <img th:if="${resultado.clasificacion.toString() == 'gryffindor'}" src="/images/gryf.jpg" alt="Gryffindor" />
+    <img th:if="${resultado.clasificacion.toString() == 'ravenclaw'}" src="/images/raven.jpg" alt="Ravenclaw" />
+    <img th:if="${resultado.clasificacion.toString() == 'slytherin'}" src="/images/slyth.jpg" alt="Slytherin" />
+    <img th:if="${resultado.clasificacion.toString() == 'hufflepuff'}" src="/images/huff.jpg" alt="Hufflepuff" />
 
-<p>Clasificación: <span th:text="${resultado.clasificacion}"></span></p>
+    <p th:text="'Clasificación: ' + ${resultado.clasificacion}" />
+</div>
 
-<!-- Puedes agregar más detalles o mensajes según tus necesidades -->
+<!--
+<p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
+-->
+
 
 </body>
 </html>

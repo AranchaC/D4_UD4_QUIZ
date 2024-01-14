@@ -8,6 +8,10 @@
 <body>
 
 <h2>Pregunta 1: ¿Qué palabra te describe mejor?</h2>
+<br>
+
+<img src="/images/img1.jpg" alt="" width="500">
+<br>
 
 <form method="post" action="/pregunta1">
     <!-- Pregunta para Gryffindor -->
@@ -21,9 +25,18 @@
 
     <!-- Pregunta para Ravenclaw -->
     <input type="radio" name="respuesta" value="ravenclaw"> Inteligencia<br>
+<br>
 
-    <input type="submit" value="Siguiente">
+    <input class="boton" type="submit" value="Siguiente">
 </form>
+
+    <style>
+        /* Estilo CSS para hacer el botón más grande */
+        .boton {
+            font-size: 20px; /* Tamaño del texto del botón */
+            padding: 10px 20px; /* Relleno del botón (arriba y abajo, izquierda y derecha) */
+        }
+    </style>
 
 </body>
 </html>

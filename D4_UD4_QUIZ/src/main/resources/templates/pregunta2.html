@@ -8,6 +8,10 @@
 <body>
 
 <h2>Pregunta 2: ¿Qué asignaturas elegirías?</h2>
+<br>
+
+<img src="/images/img2_1.jpg" alt="" width="500">
+<br>
 
 <form method="post" action="/pregunta2">
     <!-- Opciones para asignaturas de Hogwarts -->
@@ -22,9 +26,17 @@
     <input type="checkbox" name="opciones" value="historia"> Historia de la magia<br>
     <input type="checkbox" name="opciones" value="criaturas"> Cuidad criaturas mágicas<br>
 	<input type="checkbox" name="opciones" value="vuelo"> Vuelo<br>
-
-    <input type="submit" value="Siguiente">
+<br>
+    <input class="boton" type="submit" value="Siguiente">
 </form>
+
+    <style>
+        /* Estilo CSS para hacer el botón más grande */
+        .boton {
+            font-size: 20px; /* Tamaño del texto del botón */
+            padding: 10px 20px; /* Relleno del botón (arriba y abajo, izquierda y derecha) */
+        }
+    </style>
 
 </body>
 </html>
