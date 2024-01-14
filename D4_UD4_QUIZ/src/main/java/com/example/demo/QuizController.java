@@ -16,10 +16,21 @@ public class QuizController {
 		return "inicio";	
 		//se muestra la pagina inicio almacenada en static
 	}
+	
+//	@PostMapping("/")
+//	public String iniciar (HttpSession session) {
+//        session.setAttribute("puntos", 0);
+//        return "redirect:/pregunta1";
+//	}
+	
+    @GetMapping("/pregunta1")
+    public String pregunta1() {
+        return "pregunta1";
+    }
     
     @PostMapping("/pregunta1")
     public String Pregunta1(
-    		@RequestParam String respuesta, 
+    		@RequestParam(name = "respuesta") String respuesta, 
     		HttpSession session) {
     	
     	int puntos = 0;
@@ -45,12 +56,12 @@ public class QuizController {
     
     @GetMapping("/pregunta2")
     public String pregunta2() {
-        return "pregunta1";
+        return "pregunta2";
     }
     
     @PostMapping("/pregunta2")
     public String pregunta2(
-    		@RequestParam(value = "opciones", required = false) 
+    		@RequestParam (value = "opciones", required = false) 
     		String[] opciones, 
     		HttpSession session) {
         int puntos = 0;
@@ -66,21 +77,26 @@ public class QuizController {
 
         return "pregunta3";
     }
+    
+    @GetMapping("/pregunta3")
+    public String pregunta3() {
+        return "pregunta3";
+    }
 
     @PostMapping("/pregunta3")
     public String pregunta3(
-    		@RequestParam String respuesta, 
+    		@RequestParam(name = "respuesta") String respuesta, 
     		HttpSession session) {
         int puntos = 0;
         // Lógica para manejar la respuesta de la pregunta 3 (select)
         // Puedes asignar puntos según la opción seleccionada
-        if (respuesta.equals("opcion1")) {
+        if (respuesta.equals("minerva")) {
             puntos = 1;
-        } else if (respuesta.equals("opcion2")) {
+        } else if (respuesta.equals("snape")) {
             puntos = 2;
-        } else if (respuesta.equals("opcion3")) {
+        } else if (respuesta.equals("flitwick")) {
             puntos = 3;
-        } else if (respuesta.equals("opcion4")) {
+        } else if (respuesta.equals("sprout")) {
             puntos = 4;
         } 
 
@@ -88,10 +104,10 @@ public class QuizController {
         int puntosActuales = obtenerPuntos(session);
         session.setAttribute("puntos", puntosActuales + puntos);
 
-        return "finalizar";
+        return "finalResultado";
     }//preg3
     
-    @PostMapping("/finalizar")
+    @PostMapping("/finalResultado")
     public String finalizar(
     		HttpSession session, 
     		Model model) {
@@ -104,12 +120,18 @@ public class QuizController {
 
         model.addAttribute("resultado", resultado);
 
-        return "resultado";
+        return "finalResultado";
     }//finalizar
     
+//    private int obtenerPuntos(HttpSession session) {
+//        return (int) session.getAttribute("puntos");
+//    }//obtenerPts
+    
     private int obtenerPuntos(HttpSession session) {
-        return (int) session.getAttribute("puntos");
-    }//obtenerPts
+        Integer puntos = (Integer) session.getAttribute("puntos");
+        return (puntos != null) ? puntos.intValue() : 0;
+    }
+
     
     private Clasificacion calcularClasificacion(int puntos) {
         // Lógica para determinar la clasificación según los puntos
