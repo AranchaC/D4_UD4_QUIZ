@@ -12,16 +12,15 @@ import jakarta.servlet.http.HttpSession;
 public class QuizController {
 	
 	@GetMapping("/")
-	public String inicio() {
-		return "inicio";	
-		//se muestra la pagina inicio almacenada en static
-	}
-	
-    @GetMapping("/pregunta1")
-    public String pregunta1(HttpSession session, Model model) {
-    	// Reiniciar los puntos:
+	public String inicio(HttpSession session, Model model) {
+    	// Reiniciar los puntos en el inicio creando nuevo objeto/modelo Resultado:
         Resultado resultado = new Resultado();
         session.setAttribute("resultado", resultado);
+		return "inicio"; //se muestra la pagina inicio.	
+	}//inicio
+	
+    @GetMapping("/pregunta1")
+    public String pregunta1() {
         return "pregunta1";
     }
     
@@ -135,13 +134,42 @@ public class QuizController {
         // Actualizar la sesión con los puntos obtenidos
         Resultado resultado = obtenerResultado(session);
         resultado.setPuntos(resultado.getPuntos() + puntos);
-        resultado.setClasificacion(calcularClasificacion(resultado.getPuntos()));
-
         model.addAttribute("resultado", resultado);
 
-        // Redirigir a la página final
+        return "pregunta5";
+    }//pregunta4
+    
+    @PostMapping("/pregunta5")
+    public String pregunta5(
+            @RequestParam(name = "respuesta") String respuesta,
+            HttpSession session,
+            Model model) {
+        int puntos = 0;
+
+        // pasar a minúsculas y eliminar espacios en blanco
+        String respuestaReal = respuesta.toLowerCase().trim();
+
+        // Comprobar la respuesta con las opciones válidas:
+        if (respuestaReal.equals("espada")) {
+            puntos = 4;
+        } else if (respuestaReal.equals("varita")) {
+            puntos = 3;
+        } else if (respuestaReal.equals("libro")) {
+            puntos = 2;
+        } else if (respuestaReal.equals("escoba")) {
+            puntos = 1;
+        }
+
+        // Actualizar la sesión con los puntos obtenidos
+        Resultado resultado = obtenerResultado(session);
+        resultado.setPuntos(resultado.getPuntos() + puntos);
+        model.addAttribute("resultado", resultado);
+        
+        resultado.setClasificacion(calcularClasificacion(resultado.getPuntos()));
+
         return "finalResultado";
     }
+
     
 //    @PostMapping("/finalResultado")
 //    public String finalizar(
@@ -161,8 +189,8 @@ public class QuizController {
     
     private Resultado obtenerResultado(HttpSession session) {
     	Resultado resultado = (Resultado) session.getAttribute("resultado");
-        if (resultado == null) {
-            // Si no existe en la sesión, crear uno nuevo y guardarlo en la sesión
+        // Si no existe en la sesión, crear uno nuevo y se guarda en la sesión:
+    	if (resultado == null) {
             resultado = new Resultado();
             session.setAttribute("resultado", resultado);
         }
@@ -171,11 +199,11 @@ public class QuizController {
     
     private Clasificacion calcularClasificacion(int puntos) {
         // determinar la clasificación según los puntos
-        if (puntos >= 10) {
+        if (puntos >= 20) {
             return Clasificacion.GRYFFINDOR;
-        } else if (puntos >= 7) {
+        } else if (puntos >= 15) {
             return Clasificacion.RAVENCLAW;
-        } else if (puntos >= 4) {
+        } else if (puntos >= 10) {
             return Clasificacion.SLYTHERIN;
         } else {
             return Clasificacion.HUFFLEPUFF;

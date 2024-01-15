@@ -3,51 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pregunta 1</title>
+    <title>Pregunta 5</title>
 </head>
 <body>
 
-<h2>Pregunta 1: <br> ¿Qué palabra te describe mejor?</h2>
-<img src="/images/img1.jpg" alt="" width="420">
+<h2>Pregunta 5:<br> Escribe qué objeto eligirías:</h2>
+<img src="/images/img5.jpg" alt="" width="400">
 
-<form method="post" action="/pregunta1">
-    <!-- Pregunta para Gryffindor -->
-    <input type="radio" name="respuesta" value="gryffindor" id="gryffindor"> 
-    <label for="gryffindor">Valentía</label><br>
-
-    <!-- Pregunta para Hufflepuff -->
-    <input type="radio" name="respuesta" value="hufflepuff"	id="hufflepuff">
-	<label for="hufflepuff">Lealtad</label><br>
-	
-    <!-- Pregunta para Slytherin -->
-    <input type="radio" name="respuesta" value="slytherin" id="slytherin">
-    <label for="slytherin">Liderazgo</label><br>
-
-    <!-- Pregunta para Ravenclaw -->
-    <input type="radio" name="respuesta" value="ravenclaw" id="ravenclaw">
-    <label for="ravenclaw">Inteligencia</label><br>
-<br>
-
+<form method="post" action="/pregunta5">
+    <!-- Textarea para la pregunta 5 -->
+    <a>Elige entre varita, escoba, libro o espada</a>
+    <textarea name="respuesta" rows="2" cols="50" placeholder="varita, escoba, libro o espada"></textarea>
+    <br>
     <input class="boton" type="submit" value="Siguiente">
+    <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" />
 </form>
-
     <style>
-        img {
+		img {
 			border-radius: 8px;
 			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
 		}
 		
-        body {
+		body {
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
-	        background-repeat: no-repeat;
+	        background-repeat: no-repeat; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 25px;
+            gap: 15px;
             margin: 0;
-            padding: 0px 35px;		
+            padding: 0px 35px;
         }
         
         h2 {
@@ -55,7 +42,7 @@
 			color: white;
 			text-shadow: 0 0 20px black ;	
 		}
-		
+        
         form {
             background-color: rgb(255, 155, 255);
             border-radius: 8px;
@@ -88,4 +75,3 @@
 
 </body>
 </html>
-
