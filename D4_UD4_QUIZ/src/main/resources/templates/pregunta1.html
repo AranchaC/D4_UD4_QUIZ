@@ -7,35 +7,83 @@
 </head>
 <body>
 
-<h2>Pregunta 1: ¿Qué palabra te describe mejor?</h2>
-<br>
-
-<img src="/images/img1.jpg" alt="" width="500">
-<br>
+<h2>Pregunta 1: <br> ¿Qué palabra te describe mejor?</h2>
+<img src="/images/img1.jpg" alt="" width="420">
 
 <form method="post" action="/pregunta1">
     <!-- Pregunta para Gryffindor -->
-    <input type="radio" name="respuesta" value="gryffindor"> Valentía<br>
+    <input type="radio" name=t"respuesta" value="gryffindor" id="gryffindor"> 
+    <label for="gryffindor">Valentía</label><br>
 
     <!-- Pregunta para Hufflepuff -->
-    <input type="radio" name="respuesta" value="hufflepuff"> Lealtad<br>
-
+    <input type="radio" name="respuesta" value="hufflepuff"	id="hufflepuff">
+	<label for="hufflepuff">Lealtad</label><br>
+	
     <!-- Pregunta para Slytherin -->
-    <input type="radio" name="respuesta" value="slytherin"> Liderazgo<br>
+    <input type="radio" name="respuesta" value="slytherin" id="slytherin">
+    <label for="slytherin">Liderazgo</label><br>
 
     <!-- Pregunta para Ravenclaw -->
-    <input type="radio" name="respuesta" value="ravenclaw"> Inteligencia<br>
+    <input type="radio" name="respuesta" value="ravenclaw" id="ravenclaw">
+    <label for="ravenclaw">Inteligencia</label><br>
 <br>
 
     <input class="boton" type="submit" value="Siguiente">
 </form>
 
     <style>
-        /* Estilo CSS para hacer el botón más grande */
-        .boton {
-            font-size: 20px; /* Tamaño del texto del botón */
-            padding: 10px 20px; /* Relleno del botón (arriba y abajo, izquierda y derecha) */
+        img {
+			border-radius: 8px;
+			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
+		}
+		
+        body {
+			background-image: url('/images/fondo3.jpg');
+	        background-size: 100% 100%;
+	        background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: 0;
+            padding: 0px 35px;		
         }
+        
+        h2 {
+			text-align: center;
+			color: white;
+			text-shadow: 0 0 20px black ;	
+		}
+		
+        form {
+            background-color: rgb(255, 155, 255);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 2);
+            padding: 20px;
+            width: 450px;
+            max-width: 100%;
+            font-weight: bold;
+        }
+        
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(0, 64, 0);
+        }
+        
     </style>
 
 </body>

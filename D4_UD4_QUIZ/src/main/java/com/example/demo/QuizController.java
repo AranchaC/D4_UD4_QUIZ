@@ -17,14 +17,11 @@ public class QuizController {
 		//se muestra la pagina inicio almacenada en static
 	}
 	
-//	@PostMapping("/")
-//	public String iniciar (HttpSession session) {
-//        session.setAttribute("puntos", 0);
-//        return "redirect:/pregunta1";
-//	}
-	
     @GetMapping("/pregunta1")
-    public String pregunta1() {
+    public String pregunta1(HttpSession session, Model model) {
+    	// Reiniciar los puntos:
+        Resultado resultado = new Resultado();
+        session.setAttribute("resultado", resultado);
         return "pregunta1";
     }
     
@@ -47,22 +44,17 @@ public class QuizController {
             puntos = 2;
         }
 
-        // Actualizar la sesión con los puntos obtenidos
-        int puntosActuales = obtenerPuntos(session);
-        session.setAttribute("puntos", puntosActuales + puntos);
-        
-        Resultado resultado = new Resultado();
-        resultado.setPuntos(puntos);
+        // Obtener el objeto Resultado de la sesión
+        Resultado resultado = obtenerResultado(session);
 
+        // Actualizar los puntos acumulados en el objeto Resultado
+        resultado.setPuntos(resultado.getPuntos() + puntos);
+
+        // Agregar el objeto Resultado actualizado al modelo
         model.addAttribute("resultado", resultado);
 
         return "pregunta2";
     }//preg1
-    
-    @GetMapping("/pregunta2")
-    public String pregunta2() {
-        return "pregunta2";
-    }
     
     @PostMapping("/pregunta2")
     public String pregunta2(
@@ -78,21 +70,13 @@ public class QuizController {
         }
 
         // Actualizar la sesión con los puntos obtenidos
-        int puntosActuales = obtenerPuntos(session);
-        session.setAttribute("puntos", puntosActuales + puntos);
-        
-        Resultado resultado = new Resultado();
-        resultado.setPuntos(puntos);
-
+        Resultado resultado = obtenerResultado(session);
+        resultado.setPuntos(resultado.getPuntos() + puntos);
         model.addAttribute("resultado", resultado);
 
         return "pregunta3";
     }
     
-    @GetMapping("/pregunta3")
-    public String pregunta3() {
-        return "pregunta3";
-    }
 
     @PostMapping("/pregunta3")
     public String pregunta3(
@@ -113,21 +97,13 @@ public class QuizController {
         } 
 
         // Actualizar la sesión con los puntos obtenidos
-        int puntosActuales = obtenerPuntos(session);
-        session.setAttribute("puntos", puntosActuales + puntos);
-        
-        Resultado resultado = new Resultado();
-        resultado.setPuntos(puntos);
-
+        Resultado resultado = obtenerResultado(session);
+        resultado.setPuntos(resultado.getPuntos() + puntos);
         model.addAttribute("resultado", resultado);
 
         return "pregunta4";
     }//preg3
     
-    @GetMapping("/pregunta4")
-    public String pregunta4() {
-        return "pregunta4";
-    }
 
     @PostMapping("/pregunta4")
     public String pregunta4(
@@ -157,14 +133,9 @@ public class QuizController {
         }
 
         // Actualizar la sesión con los puntos obtenidos
-        int puntosActuales = obtenerPuntos(session);
-        session.setAttribute("puntos", puntosActuales + puntos);
-        
-        Clasificacion clasificacion = calcularClasificacion(puntos);
-
-        Resultado resultado = new Resultado();
-        resultado.setClasificacion(clasificacion);
-        resultado.setPuntos(puntos);
+        Resultado resultado = obtenerResultado(session);
+        resultado.setPuntos(resultado.getPuntos() + puntos);
+        resultado.setClasificacion(calcularClasificacion(resultado.getPuntos()));
 
         model.addAttribute("resultado", resultado);
 
@@ -188,38 +159,27 @@ public class QuizController {
 //        return "finalResultado";
 //    }//finalizar
     
-//    private int obtenerPuntos(HttpSession session) {
-//        return (int) session.getAttribute("puntos");
-//    }//obtenerPts
-    
-//    private int obtenerPuntos(HttpSession session) {
-//    	// Obtener el valor asociado con la clave "puntos" de la sesión
-//        Integer puntos = (Integer) session.getAttribute("puntos");
-//        
-//        // Si puntos no es nulo, devuelve su valor como un entero, de lo contrario, devuelve 0
-//        return (puntos != null) ? puntos.intValue() : 0;
-//    }
-    
-    private int obtenerPuntos(HttpSession session) {
-        if (session != null) {
-            Integer puntos = (Integer) session.getAttribute("puntos");
-            return (puntos != null) ? puntos.intValue() : 0;
-        } else {
-            return 0; 
+    private Resultado obtenerResultado(HttpSession session) {
+    	Resultado resultado = (Resultado) session.getAttribute("resultado");
+        if (resultado == null) {
+            // Si no existe en la sesión, crear uno nuevo y guardarlo en la sesión
+            resultado = new Resultado();
+            session.setAttribute("resultado", resultado);
         }
-    }
-
+        return resultado;
+    }//obtenerResultado
+    
     private Clasificacion calcularClasificacion(int puntos) {
         // determinar la clasificación según los puntos
         if (puntos >= 10) {
-            return Clasificacion.gryffindor;
+            return Clasificacion.GRYFFINDOR;
         } else if (puntos >= 7) {
-            return Clasificacion.ravenclaw;
+            return Clasificacion.RAVENCLAW;
         } else if (puntos >= 4) {
-            return Clasificacion.slytherin;
+            return Clasificacion.SLYTHERIN;
         } else {
-            return Clasificacion.hufflepuff;
+            return Clasificacion.HUFFLEPUFF;
         }
-    }//calcularClasi
+    }//calcularClasif
 }
 

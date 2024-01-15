@@ -8,11 +8,10 @@
 </head>
 <body>
 
-<h2>Pregunta 4: Dada la opción, preferirías inventar una poción que garantizara:</h2>
-<br>
+<h2>Pregunta 4: <br> Dada la opción, preferirías inventar una poción que garantizara:</h2>
 
-<img src="/images/img4.jpg" alt="" width="500">
-<br>
+<img src="/images/img4.jpg" alt="" width="420">
+<br><br>
 
 <form method="post" action="/pregunta4">
     <!-- Opciones de asignaturas -->
@@ -22,20 +21,68 @@
     <button type="submit" name="respuesta" value="poder">Poder</button>
 <br><br>
 
+<!-- al ser de tipo Button, no hace falta botón enviar.
     <input class="boton" type="submit" value="Siguiente">
-    
+ -->   
     <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
 </form>
 
     <style>
         /* Estilo CSS para hacer el botón más grande */
-        .boton {
-            font-size: 20px; /* Tamaño del texto del botón */
-            padding: 10px 20px; /* Relleno del botón (arriba y abajo, izquierda y derecha) */
+        button {
+			padding: 5px 15px;
+			margin-right: 5px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		
+		button:hover {
+			background-color: rgb(0, 64, 0);
+			color: white;
+		}
+		
+		img {
+			border-radius: 8px;
+			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
+		}
+		
+		body {
+			background-image: url('/images/fondo3.jpg');
+	        background-size: 100% 100%;
+	        background-repeat: no-repeat;
+	        
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: 0;
+            padding: 0px 35px;
         }
         
-        button {
-			padding: 5px 5px;
+        h2 {
+			text-align: center;
+			color: white;
+			text-shadow: 0 0 20px black ;	
+		}
+		
+        form {
+            background-color: rgb(255, 155, 255);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 2);
+            padding: 20px;
+            width: 450px;
+            max-width: 100%;
+            font-weight: bold;
+            text-align: center;
+        }    
+
+        input[type="submit"]:hover {
+            background-color: rgb(0, 64, 0);
+        }
+        
+		p {
+			text-align: left;
 		}
     </style>
 

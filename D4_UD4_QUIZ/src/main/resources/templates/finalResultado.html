@@ -8,19 +8,42 @@
 <body>
 
 <h2>¡Quiz Finalizado!</h2>
-<br>
-    <p th:text="'Clasificación: ' + ${resultado.clasificacion}" />
+    <p th:text="'Has sido seleccionado para la casa  ' + ${resultado.clasificacion}" />
     <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
 
 <!-- Verificar si resultado y resultado.clasificacion no son nulos -->
 <div th:if="${resultado != null and resultado.clasificacion != null}">
     <!-- Condición para mostrar imágenes según la clasificación -->
-    <img th:if="${resultado.clasificacion.toString() == 'gryffindor'}" src="/images/gryf.jpg" width="550" />
-    <img th:if="${resultado.clasificacion.toString() == 'ravenclaw'}" src="/images/raven.jpg" width="550"/>
-    <img th:if="${resultado.clasificacion.toString() == 'slytherin'}" src="/images/slyth.jpg" width="550" />
-    <img th:if="${resultado.clasificacion.toString() == 'hufflepuff'}" src="/images/huff.jpg" width="550" />
+    <img th:if="${resultado.clasificacion.toString() == 'GRYFFINDOR'}" src="/images/gryf.jpg" width="550" />
+    <img th:if="${resultado.clasificacion.toString() == 'RAVENCLAW'}" src="/images/raven.jpg" width="550"/>
+    <img th:if="${resultado.clasificacion.toString() == 'SLYTHERIN'}" src="/images/slyth.jpg" width="550" />
+    <img th:if="${resultado.clasificacion.toString() == 'HUFFLEPUFF'}" src="/images/huff.jpg" width="550" />
 
 </div>
+
+<style>
+	
+		body {
+			background-image: url('/images/fondo.jpg');
+	        background-size: 100% 100%;
+	        background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        
+        img {
+			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
+		}
+		
+		h2, p {
+			color: white;
+			font-weight: bold;
+			text-shadow: 0 0 20px black ;		
+		}
+</style>
 
 </body>
 </html>
