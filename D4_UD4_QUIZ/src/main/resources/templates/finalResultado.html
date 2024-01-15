@@ -8,24 +8,19 @@
 <body>
 
 <h2>¡Quiz Finalizado!</h2>
-<br><br>
+<br>
     <p th:text="'Clasificación: ' + ${resultado.clasificacion}" />
+    <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
 
 <!-- Verificar si resultado y resultado.clasificacion no son nulos -->
 <div th:if="${resultado != null and resultado.clasificacion != null}">
     <!-- Condición para mostrar imágenes según la clasificación -->
-    <img th:if="${resultado.clasificacion.toString() == 'gryffindor'}" src="/images/gryf.jpg" alt="Gryffindor" />
-    <img th:if="${resultado.clasificacion.toString() == 'ravenclaw'}" src="/images/raven.jpg" alt="Ravenclaw" />
-    <img th:if="${resultado.clasificacion.toString() == 'slytherin'}" src="/images/slyth.jpg" alt="Slytherin" />
-    <img th:if="${resultado.clasificacion.toString() == 'hufflepuff'}" src="/images/huff.jpg" alt="Hufflepuff" />
+    <img th:if="${resultado.clasificacion.toString() == 'gryffindor'}" src="/images/gryf.jpg" width="550" />
+    <img th:if="${resultado.clasificacion.toString() == 'ravenclaw'}" src="/images/raven.jpg" width="550"/>
+    <img th:if="${resultado.clasificacion.toString() == 'slytherin'}" src="/images/slyth.jpg" width="550" />
+    <img th:if="${resultado.clasificacion.toString() == 'hufflepuff'}" src="/images/huff.jpg" width="550" />
 
-    <p th:text="'Clasificación: ' + ${resultado.clasificacion}" />
 </div>
-
-<!--
-<p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
--->
-
 
 </body>
 </html>

@@ -21,7 +21,10 @@
     <button type="submit" name="respuesta" value="amor">Amor</button>
     <button type="submit" name="respuesta" value="poder">Poder</button>
 <br><br>
+
     <input class="boton" type="submit" value="Siguiente">
+    
+    <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
 </form>
 
     <style>

@@ -31,7 +31,8 @@ public class QuizController {
     @PostMapping("/pregunta1")
     public String Pregunta1(
     		@RequestParam(name = "respuesta") String respuesta, 
-    		HttpSession session) {
+    		HttpSession session,
+    		Model model) {
     	
     	int puntos = 0;
     	
@@ -49,6 +50,11 @@ public class QuizController {
         // Actualizar la sesión con los puntos obtenidos
         int puntosActuales = obtenerPuntos(session);
         session.setAttribute("puntos", puntosActuales + puntos);
+        
+        Resultado resultado = new Resultado();
+        resultado.setPuntos(puntos);
+
+        model.addAttribute("resultado", resultado);
 
         return "pregunta2";
     }//preg1
@@ -62,7 +68,8 @@ public class QuizController {
     public String pregunta2(
     		@RequestParam (value = "opciones", required = false) 
     		String[] opciones, 
-    		HttpSession session) {
+    		HttpSession session,
+    		Model model) {
         int puntos = 0;
         // Gestión respuesta de la pregunta 2 (checkbox)
         // asignar puntos según las opciones seleccionadas
@@ -73,6 +80,11 @@ public class QuizController {
         // Actualizar la sesión con los puntos obtenidos
         int puntosActuales = obtenerPuntos(session);
         session.setAttribute("puntos", puntosActuales + puntos);
+        
+        Resultado resultado = new Resultado();
+        resultado.setPuntos(puntos);
+
+        model.addAttribute("resultado", resultado);
 
         return "pregunta3";
     }
@@ -85,7 +97,8 @@ public class QuizController {
     @PostMapping("/pregunta3")
     public String pregunta3(
     		@RequestParam(name = "respuesta") String respuesta, 
-    		HttpSession session) {
+    		HttpSession session,
+    		Model model) {
         int puntos = 0;
         // Gestión respuesta de la pregunta 3 (select)
         // asignar puntos según la opción seleccionada
@@ -102,6 +115,11 @@ public class QuizController {
         // Actualizar la sesión con los puntos obtenidos
         int puntosActuales = obtenerPuntos(session);
         session.setAttribute("puntos", puntosActuales + puntos);
+        
+        Resultado resultado = new Resultado();
+        resultado.setPuntos(puntos);
+
+        model.addAttribute("resultado", resultado);
 
         return "pregunta4";
     }//preg3
@@ -114,7 +132,8 @@ public class QuizController {
     @PostMapping("/pregunta4")
     public String pregunta4(
             @RequestParam(name = "respuesta") String respuesta,
-            HttpSession session) {
+            HttpSession session,
+            Model model) {
         int puntos = 0;
 
         // Gestión de la respuesta de la pregunta 4 (botones)
@@ -140,16 +159,7 @@ public class QuizController {
         // Actualizar la sesión con los puntos obtenidos
         int puntosActuales = obtenerPuntos(session);
         session.setAttribute("puntos", puntosActuales + puntos);
-
-        // Redirigir a la página final
-        return "finalResultado";
-    }
-    
-    @PostMapping("/finalResultado")
-    public String finalizar(
-    		HttpSession session, 
-    		Model model) {
-        int puntos = obtenerPuntos(session);
+        
         Clasificacion clasificacion = calcularClasificacion(puntos);
 
         Resultado resultado = new Resultado();
@@ -158,17 +168,47 @@ public class QuizController {
 
         model.addAttribute("resultado", resultado);
 
+        // Redirigir a la página final
         return "finalResultado";
-    }//finalizar
+    }
     
-    private int obtenerPuntos(HttpSession session) {
-        return (int) session.getAttribute("puntos");
-    }//obtenerPts
+//    @PostMapping("/finalResultado")
+//    public String finalizar(
+//    		HttpSession session, 
+//    		Model model) {
+//        int puntos = obtenerPuntos(session);
+//        Clasificacion clasificacion = calcularClasificacion(puntos);
+//
+//        Resultado resultado = new Resultado();
+//        resultado.setClasificacion(clasificacion);
+//        resultado.setPuntos(puntos);
+//
+//        model.addAttribute("resultado", resultado);
+//
+//        return "finalResultado";
+//    }//finalizar
     
 //    private int obtenerPuntos(HttpSession session) {
+//        return (int) session.getAttribute("puntos");
+//    }//obtenerPts
+    
+//    private int obtenerPuntos(HttpSession session) {
+//    	// Obtener el valor asociado con la clave "puntos" de la sesión
 //        Integer puntos = (Integer) session.getAttribute("puntos");
+//        
+//        // Si puntos no es nulo, devuelve su valor como un entero, de lo contrario, devuelve 0
 //        return (puntos != null) ? puntos.intValue() : 0;
 //    }
+    
+    private int obtenerPuntos(HttpSession session) {
+        if (session != null) {
+            Integer puntos = (Integer) session.getAttribute("puntos");
+            return (puntos != null) ? puntos.intValue() : 0;
+        } else {
+            return 0; 
+        }
+    }
+
 
     
     private Clasificacion calcularClasificacion(int puntos) {
