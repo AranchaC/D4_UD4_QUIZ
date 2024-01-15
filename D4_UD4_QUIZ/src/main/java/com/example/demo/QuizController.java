@@ -209,8 +209,6 @@ public class QuizController {
         }
     }
 
-
-    
     private Clasificacion calcularClasificacion(int puntos) {
         // determinar la clasificación según los puntos
         if (puntos >= 10) {
