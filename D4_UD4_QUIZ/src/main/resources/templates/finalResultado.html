@@ -8,7 +8,7 @@
 <body>
 
 <h2>¡Quiz Finalizado!</h2>
-    <p th:text="'Has sido seleccionado para la casa  ' + ${resultado.clasificacion}" />
+<p th:text="'Has sido seleccionado para la casa  ' + ${resultado.clasificacion}" />
     
 <!-- Verificar si resultado y resultado.clasificacion no son nulos -->
 <div th:if="${resultado != null and resultado.clasificacion != null}">
@@ -27,7 +27,7 @@
 			background-image: url('/images/fondo.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat;
-	        height: 100vh;
+	        height: 100%;
 	        
             display: flex;
             flex-direction: column;

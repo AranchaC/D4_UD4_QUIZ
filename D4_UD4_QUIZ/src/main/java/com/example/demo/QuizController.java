@@ -164,11 +164,9 @@ public class QuizController {
         Resultado resultado = obtenerResultado(session);
         resultado.setPuntos(resultado.getPuntos() + puntos);
         model.addAttribute("resultado", resultado);
-        
-        resultado.setClasificacion(calcularClasificacion(resultado.getPuntos()));
 
         return "pregunta6";
-    }
+    }//preg5
     
     @PostMapping("/pregunta6")
     public String Pregunta6(
@@ -229,9 +227,12 @@ public class QuizController {
         Resultado resultado = obtenerResultado(session);
         resultado.setPuntos(resultado.getPuntos() + puntos);
         model.addAttribute("resultado", resultado);
+        
+        // y actualizamos la clasificación, accediendo a los puntos:
+        resultado.setClasificacion(calcularClasificacion(resultado.getPuntos()));
 
         return "finalResultado";
-    }//pregunta4
+    }//pregunta7
 
     
 //    @PostMapping("/finalResultado")
