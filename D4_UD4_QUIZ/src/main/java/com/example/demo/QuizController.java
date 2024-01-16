@@ -178,7 +178,7 @@ public class QuizController {
     	
     	int puntos = 0;
     	
-    	//manejar la respuesta de la pregunta 1 (radio button)
+    	//manejar la respuesta de la pregunta 6 (radio button)
         if (respuesta.equals("gryffindor")) {
             puntos = 4;
         } else if (respuesta.equals("hufflepuff")) {
@@ -205,7 +205,7 @@ public class QuizController {
             Model model) {
         int puntos = 0;
 
-        // Gestión de la respuesta de la pregunta 4 (botones)
+        // Gestión de la respuesta de la pregunta 7 (botones)
         switch (respuesta) {
             case "gryff":
                 puntos = 4;
