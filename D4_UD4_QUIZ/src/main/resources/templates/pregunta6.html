@@ -1,35 +1,39 @@
+<!--  
+	criaturas magicas: unicornio, basilisco, dragones
+-->
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pregunta 2</title>
+    <title>Pregunta 6</title>
 </head>
 <body>
 
-<h2>Pregunta 2: <br> ¿Qué asignaturas elegirías?</h2>
+<h2>Pregunta 6: <br> ¿Qué criatura mágica te parece más interesante?</h2>
+<img src="/images/img6.jpg" alt="" width="450">
 
-<img src="/images/img2_1.jpg" alt="" width="450">
-
-<form method="post" action="/pregunta2">
-    <!-- Opciones para asignaturas de Hogwarts -->
-    <input type="checkbox" name="opciones" value="pociones"> Pociones<br>
-    <input type="checkbox" name="opciones" value="defensa"> Defensa Contra las Artes Oscuras<br>
-    <input type="checkbox" name="opciones" value="astronomia"> Astronomía<br>
-    <input type="checkbox" name="opciones" value="transformaciones"> Transformaciones<br>
-    <input type="checkbox" name="opciones" value="herbologia"> Herbología<br>
-    <input type="checkbox" name="opciones" value="muggles"> Estudios muggles<br>
-    <input type="checkbox" name="opciones" value="adivinación"> Adivinación<br>
-    <input type="checkbox" name="opciones" value="encantamientos"> Encantamientos<br>
-    <input type="checkbox" name="opciones" value="historia"> Historia de la magia<br>
-    <input type="checkbox" name="opciones" value="criaturas"> Cuidad criaturas mágicas<br>
-	<input type="checkbox" name="opciones" value="vuelo"> Vuelo<br>
-<br>
-	<div class="izq">
-    	<input class="boton" type="submit" value="Siguiente">
+<form method="post" action="/pregunta6">
+	<div class="center">
+	    <!-- Pregunta para Gryffindor -->
+	    <input type="radio" name="respuesta" value="gryffindor" id="gryffindor"> 
+	    <label for="gryffindor">Dragones</label><br>
+	
+	    <!-- Pregunta para Hufflepuff -->
+	    <input type="radio" name="respuesta" value="hufflepuff"	id="hufflepuff">
+		<label for="hufflepuff">Hipogrifo</label><br>
+		
+	    <!-- Pregunta para Slytherin -->
+	    <input type="radio" name="respuesta" value="slytherin" id="slytherin">
+	    <label for="slytherin">Basilisco</label><br>
+	
+	    <!-- Pregunta para Ravenclaw -->
+	    <input type="radio" name="respuesta" value="ravenclaw" id="ravenclaw">
+	    <label for="ravenclaw">Elfo</label><br>
     </div>
-    
-    <p th:text="'Llevas ' + ${resultado.puntos} + ' puntos.'" /p>
+<br>
+
+    <input class="boton" type="submit" value="Siguiente">
 </form>
 
     <style>
@@ -37,7 +41,7 @@
 			border-radius: 8px;
 			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
 		}
-        
+		
         body {
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
@@ -58,7 +62,7 @@
 			color: white;
 			text-shadow: 0 0 5px black ;	
 		}
-        
+		
         form {
             background-color: rgb(255, 155, 255);
             border-radius: 8px;
@@ -67,17 +71,24 @@
             width: 450px;
             max-width: 100%;
             font-weight: bold;
+            text-align: center;
         }
         
-        .izq {
-			text-align: center;
+        .center {
+			margin-left: 150px;
+			width: 50%;
+			text-align: left;
 		}
+        
+        input[type="radio"] {
+            margin-right: 5px;
+        }
         
         input[type="submit"] {
             background-color: #4caf50;
             color: #fff;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 15px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 4px;
@@ -86,7 +97,9 @@
         input[type="submit"]:hover {
             background-color: rgb(0, 64, 0);
         }
+        
     </style>
 
 </body>
 </html>
+

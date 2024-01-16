@@ -4,20 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pregunta 4</title>
+    <title>Pregunta 7</title>
 </head>
 <body>
 
-<h2>Pregunta 4: <br> Dada la opción, preferirías inventar una poción que garantizara:</h2>
+<h2>Pregunta 7: <br> ¿Cómo te describirías en una discusión?</h2>
 
-<img src="/images/img4.jpg" alt="" width="450">
+<img src="/images/img7.jpg" alt="" width="450">
 
-<form method="post" action="/pregunta4">
-    <!-- Opciones de asignaturas -->
-    <button type="submit" name="respuesta" value="gloria">Gloria</button>
-    <button type="submit" name="respuesta" value="sabiduria">Sabiduría</button>
-    <button type="submit" name="respuesta" value="amor">Amor</button>
-    <button type="submit" name="respuesta" value="poder">Poder</button>
+<form method="post" action="/pregunta7">
+    <button type="submit" name="respuesta" value="gryff">
+		Defiendo mi punto de vista con firmeza.</button><br>
+    <button type="submit" name="respuesta" value="slyth">
+		Busco ganar la discusión a toda costa.</button><br>
+    <button type="submit" name="respuesta" value="huff">
+		Escucho a los demás e intengo llegar a un acurdo.</button><br>
+    <button type="submit" name="respuesta" value="raven">
+		Presento argumentos logicos y coherentes.</button>
 <br><br>
 
 <!-- al ser de tipo Button, no hace falta botón enviar.
@@ -30,9 +33,10 @@
         /* Estilo CSS para hacer el botón más grande */
         button {
 			padding: 5px 15px;
-			margin-right: 5px;
+			margin-bottom: 5px;
 			font-size: 15px;
 			font-weight: bold;
+			width: 100%;
 		}
 		
 		button:hover {
@@ -74,7 +78,7 @@
             width: 450px;
             max-width: 100%;
             font-weight: bold;
-            text-align: center;
+            
         }    
 
         input[type="submit"]:hover {

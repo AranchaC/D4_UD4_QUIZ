@@ -8,24 +8,26 @@
 <body>
 
 <h2>Pregunta 1: <br> ¿Qué palabra te describe mejor?</h2>
-<img src="/images/img1.jpg" alt="" width="420">
+<img src="/images/img1.jpg" alt="" width="450">
 
 <form method="post" action="/pregunta1">
-    <!-- Pregunta para Gryffindor -->
-    <input type="radio" name="respuesta" value="gryffindor" id="gryffindor"> 
-    <label for="gryffindor">Valentía</label><br>
-
-    <!-- Pregunta para Hufflepuff -->
-    <input type="radio" name="respuesta" value="hufflepuff"	id="hufflepuff">
-	<label for="hufflepuff">Lealtad</label><br>
+	<div class="center">
+	    <!-- Pregunta para Gryffindor -->
+	    <input type="radio" name="respuesta" value="gryffindor" id="gryffindor"> 
+	    <label for="gryffindor">Valentía</label><br>
 	
-    <!-- Pregunta para Slytherin -->
-    <input type="radio" name="respuesta" value="slytherin" id="slytherin">
-    <label for="slytherin">Liderazgo</label><br>
-
-    <!-- Pregunta para Ravenclaw -->
-    <input type="radio" name="respuesta" value="ravenclaw" id="ravenclaw">
-    <label for="ravenclaw">Inteligencia</label><br>
+	    <!-- Pregunta para Hufflepuff -->
+	    <input type="radio" name="respuesta" value="hufflepuff"	id="hufflepuff">
+		<label for="hufflepuff">Lealtad</label><br>
+		
+	    <!-- Pregunta para Slytherin -->
+	    <input type="radio" name="respuesta" value="slytherin" id="slytherin">
+	    <label for="slytherin">Liderazgo</label><br>
+	
+	    <!-- Pregunta para Ravenclaw -->
+	    <input type="radio" name="respuesta" value="ravenclaw" id="ravenclaw">
+	    <label for="ravenclaw">Inteligencia</label><br>
+    </div>
 <br>
 
     <input class="boton" type="submit" value="Siguiente">
@@ -41,11 +43,13 @@
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat;
+	        height: 100vh;
+	        
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 25px;
+            gap: 35px;
             margin: 0;
             padding: 0px 35px;		
         }
@@ -53,7 +57,7 @@
         h2 {
 			text-align: center;
 			color: white;
-			text-shadow: 0 0 20px black ;	
+			text-shadow: 0 0 5px black ;	
 		}
 		
         form {
@@ -64,7 +68,14 @@
             width: 450px;
             max-width: 100%;
             font-weight: bold;
+            text-align: center;
         }
+        
+        .center {
+			margin-left: 150px;
+			width: 50%;
+			text-align: left;
+		}
         
         input[type="radio"] {
             margin-right: 5px;

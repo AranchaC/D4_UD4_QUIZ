@@ -9,8 +9,7 @@
 
 <h2>¡Quiz Finalizado!</h2>
     <p th:text="'Has sido seleccionado para la casa  ' + ${resultado.clasificacion}" />
-    <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
-
+    
 <!-- Verificar si resultado y resultado.clasificacion no son nulos -->
 <div th:if="${resultado != null and resultado.clasificacion != null}">
     <!-- Condición para mostrar imágenes según la clasificación -->
@@ -18,7 +17,8 @@
     <img th:if="${resultado.clasificacion.toString() == 'RAVENCLAW'}" src="/images/raven.jpg" width="550"/>
     <img th:if="${resultado.clasificacion.toString() == 'SLYTHERIN'}" src="/images/slyth.jpg" width="550" />
     <img th:if="${resultado.clasificacion.toString() == 'HUFFLEPUFF'}" src="/images/huff.jpg" width="550" />
-
+	
+	<p th:text="'Has conseguido ' + ${resultado.puntos} + ' puntos.'" /p>
 </div>
 
 <style>
@@ -27,10 +27,13 @@
 			background-image: url('/images/fondo.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat;
+	        height: 100vh;
+	        
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 35px;
             margin: 0;
         }
         
@@ -38,10 +41,17 @@
 			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
 		}
 		
-		h2, p {
+		p {
 			color: white;
 			font-weight: bold;
-			text-shadow: 0 0 20px black ;		
+			font-size: larger;
+			text-shadow: 0 0 5px black ;		
+		}
+		
+		h2 {
+			color: white;
+			font-weight: bold;
+			text-shadow: 0 0 5px black ;	
 		}
 </style>
 

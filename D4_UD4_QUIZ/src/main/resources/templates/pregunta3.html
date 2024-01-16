@@ -9,7 +9,7 @@
 
 <h2>Pregunta 3: <br> Elige uno de estos profesores</h2>
 
-<img src="/images/img3_2.jpeg" alt="" width="420">
+<img src="/images/img3_2.jpeg" alt="" width="450">
 
 <form method="post" action="/pregunta3">
     <!-- Desplegable para profesores de Hogwarts -->
@@ -21,8 +21,10 @@
         <option value="flitwick">Filius Flitwick</option>
     </select>
 <br><br>
-    <input class="boton" type="submit" value="Siguiente">
-    <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" /p>
+    <div class="izq">
+    	<input class="boton" type="submit" value="Siguiente">
+    </div>
+    <p th:text="'Llevas ' + ${resultado.puntos} + ' puntos.'" /p>
 </form>
 
     <style>
@@ -35,11 +37,13 @@
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat; 
+	        height: 100vh;
+	        
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 25px;
+            gap: 35px;
             margin: 0;
             padding: 0px 35px;
         }
@@ -47,7 +51,7 @@
         h2 {
 			text-align: center;
 			color: white;
-			text-shadow: 0 0 20px black ;	
+			text-shadow: 0 0 5px black ;	
 		}
         
         form {
@@ -60,9 +64,9 @@
             font-weight: bold;
         }
         
-        input[type="radio"] {
-            margin-right: 5px;
-        }
+        .izq {
+			text-align: center;
+		}
         
         input[type="submit"] {
             background-color: #4caf50;
@@ -78,8 +82,12 @@
             background-color: rgb(0, 64, 0);
         }
         
+        select {
+			width: 100%;
+			height: 35px;
+		}
 	    select option {
-	        font-size: 12px;
+	        font-size: 18px;
 	        background-color: #fff; 
 	        color: #000; 
 	        font-weight: bold;

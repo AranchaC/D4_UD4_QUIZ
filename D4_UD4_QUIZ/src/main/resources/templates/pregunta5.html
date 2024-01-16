@@ -8,15 +8,20 @@
 <body>
 
 <h2>Pregunta 5:<br> Escribe qué objeto eligirías:</h2>
-<img src="/images/img5.jpg" alt="" width="400">
+<img src="/images/img5.jpg" alt="" width="450">
 
 <form method="post" action="/pregunta5">
     <!-- Textarea para la pregunta 5 -->
-    <a>Elige entre varita, escoba, libro o espada</a>
-    <textarea name="respuesta" rows="2" cols="50" placeholder="varita, escoba, libro o espada"></textarea>
+    <p>Elige entre varita, escoba, libro o espada:</p>
     <br>
-    <input class="boton" type="submit" value="Siguiente">
-    <p th:text="'Tus puntos totales: ' + ${resultado.puntos}" />
+    <textarea name="respuesta" rows="2" cols="50" placeholder="varita, escoba, libro o espada"></textarea>
+    <br><br>
+    
+    	<input class="boton" type="submit" value="Siguiente">
+    
+    <div class="izq">
+        <p th:text="'Llevas ' + ${resultado.puntos} + ' puntos.'" /p>
+    </div>
 </form>
     <style>
 		img {
@@ -28,11 +33,13 @@
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat; 
+	        height: 100vh;
+	        
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 35px;
             margin: 0;
             padding: 0px 35px;
         }
@@ -40,7 +47,7 @@
         h2 {
 			text-align: center;
 			color: white;
-			text-shadow: 0 0 20px black ;	
+			text-shadow: 0 0 5px black ;	
 		}
         
         form {
@@ -51,12 +58,14 @@
             width: 450px;
             max-width: 100%;
             font-weight: bold;
+            text-align: center;
         }
         
-        input[type="radio"] {
-            margin-right: 5px;
-        }
         
+        .izq {
+			text-align: left;
+		}
+		
         input[type="submit"] {
             background-color: #4caf50;
             color: #fff;

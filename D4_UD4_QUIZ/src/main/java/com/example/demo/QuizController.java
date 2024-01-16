@@ -167,8 +167,71 @@ public class QuizController {
         
         resultado.setClasificacion(calcularClasificacion(resultado.getPuntos()));
 
-        return "finalResultado";
+        return "pregunta6";
     }
+    
+    @PostMapping("/pregunta6")
+    public String Pregunta6(
+    		@RequestParam(name = "respuesta") String respuesta, 
+    		HttpSession session,
+    		Model model) {
+    	
+    	int puntos = 0;
+    	
+    	//manejar la respuesta de la pregunta 1 (radio button)
+        if (respuesta.equals("gryffindor")) {
+            puntos = 4;
+        } else if (respuesta.equals("hufflepuff")) {
+            puntos = 1;
+        } else if (respuesta.equals("slytherin")) {
+            puntos = 3;
+        } else if (respuesta.equals("ravenclaw")) {
+            puntos = 2;
+        }
+
+        // Obtener el objeto Resultado de la sesión
+        // y actualizo los puntos
+        Resultado resultado = obtenerResultado(session);
+        resultado.setPuntos(resultado.getPuntos() + puntos);
+        model.addAttribute("resultado", resultado);
+
+        return "pregunta7";
+    }//preg6
+    
+    @PostMapping("/pregunta7")
+    public String pregunta7(
+            @RequestParam(name = "respuesta") String respuesta,
+            HttpSession session,
+            Model model) {
+        int puntos = 0;
+
+        // Gestión de la respuesta de la pregunta 4 (botones)
+        switch (respuesta) {
+            case "gryff":
+                puntos = 4;
+                break;
+            case "slyth":
+                puntos = 3;
+                break;
+            case "raven":
+                puntos = 2;
+                break;
+            case "huff":
+                puntos = 1;
+                break;
+
+            default:
+                // para valores no esperados
+                break;
+        }
+
+        // Actualizar la sesión con los puntos obtenidos
+        Resultado resultado = obtenerResultado(session);
+        resultado.setPuntos(resultado.getPuntos() + puntos);
+        model.addAttribute("resultado", resultado);
+
+        return "finalResultado";
+    }//pregunta4
 
     
 //    @PostMapping("/finalResultado")
