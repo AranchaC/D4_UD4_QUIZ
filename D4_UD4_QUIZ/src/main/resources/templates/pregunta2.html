@@ -33,8 +33,14 @@
     
     <p th:text="'Llevas ' + ${resultado.puntos} + ' puntos.'" /p>
 </form>
-
+<!-- no se ven los títulos, y la caja rosa se sobresale del fondo -->
     <style>
+		
+		* {
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    margin: 0;
+		}
         img {
 			border-radius: 8px;
 			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
@@ -44,14 +50,13 @@
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat;
-	        height: 100%;
 	        
-            display: flex;
+	        display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 35px;
-            margin: 0;
+            margin: 10px;
             padding: 0px 35px;		
         }
         

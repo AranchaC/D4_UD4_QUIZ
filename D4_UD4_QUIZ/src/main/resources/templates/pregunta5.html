@@ -11,7 +11,7 @@
 <br> 
 Escribe qué objeto eligirías:</h2>
 
-<img src="/images/img5.jpg" alt="" width="450">
+<img src="/images/img5.jpg" alt="" width="410">
 
 <form method="post" action="/pregunta5">
     <!-- Textarea para la pregunta 5 -->
@@ -26,7 +26,14 @@ Escribe qué objeto eligirías:</h2>
         <p th:text="'Llevas ' + ${resultado.puntos} + ' puntos.'" /p>
     </div>
 </form>
+
+<!-- igual que la dos -->
     <style>
+				* {
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    margin: 0;
+		}
 		img {
 			border-radius: 8px;
 			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
@@ -36,14 +43,14 @@ Escribe qué objeto eligirías:</h2>
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat; 
-	        height: 100%;
+	        height: 100vh;
 	        
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 35px;
-            margin: 0;
+            margin: 10px;
             padding: 0px 35px;
         }
         

@@ -34,9 +34,18 @@
 <br>
 
     <input class="boton" type="submit" value="Siguiente">
+    
+    <div class="izq">
+        <p th:text="'Llevas ' + ${resultado.puntos} + ' puntos.'" /p>
+    </div>
 </form>
 
     <style>
+				* {
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    margin: 0;
+		}
         img {
 			border-radius: 8px;
 			box-shadow: 0 0 20px rgba(255, 255, 255, 2);
@@ -46,7 +55,7 @@
 			background-image: url('/images/fondo3.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat;
-	        height: 100%;
+	        height: 100vh;
 	        
             display: flex;
             flex-direction: column;
@@ -77,6 +86,10 @@
         .center {
 			margin-left: 150px;
 			width: 50%;
+			text-align: left;
+		}
+		
+		.izq {
 			text-align: left;
 		}
         
