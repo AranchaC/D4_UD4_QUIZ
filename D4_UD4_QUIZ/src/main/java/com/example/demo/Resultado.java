@@ -3,8 +3,18 @@ package com.example.demo;
 public class Resultado {
     private Clasificacion clasificacion;
     private int puntos;
+    
+    private String nombre;
 
-    public Clasificacion getClasificacion() {
+    public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Clasificacion getClasificacion() {
         return clasificacion;
     }
 

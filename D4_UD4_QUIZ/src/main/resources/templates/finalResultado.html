@@ -8,18 +8,39 @@
 <body>
 
 <h2>¡Quiz Finalizado!</h2>
-<p th:text="'Has sido seleccionado para la casa  ' + ${resultado.clasificacion}" />
+<p th:text="'Has sido seleccionado para la casa  ' + ${resultado.clasificacion} + 
+	' y has conseguido ' + ${resultado.puntos} + ' puntos.'" /p>
     
 <!-- Verificar si resultado y resultado.clasificacion no son nulos -->
 <div th:if="${resultado != null and resultado.clasificacion != null}">
     <!-- Condición para mostrar imágenes según la clasificación -->
-    <img th:if="${resultado.clasificacion.toString() == 'GRYFFINDOR'}" src="/images/gryf.jpg" width="550" />
-    <img th:if="${resultado.clasificacion.toString() == 'RAVENCLAW'}" src="/images/raven.jpg" width="550"/>
-    <img th:if="${resultado.clasificacion.toString() == 'SLYTHERIN'}" src="/images/slyth.jpg" width="550" />
-    <img th:if="${resultado.clasificacion.toString() == 'HUFFLEPUFF'}" src="/images/huff.jpg" width="550" />
+    <img th:if="${resultado.clasificacion.toString() == 'GRYFFINDOR'}" src="/images/gryf.jpg" width="350" />
+    <img th:if="${resultado.clasificacion.toString() == 'RAVENCLAW'}" src="/images/raven.jpg" width="350"/>
+    <img th:if="${resultado.clasificacion.toString() == 'SLYTHERIN'}" src="/images/slyth.jpg" width="350" />
+    <img th:if="${resultado.clasificacion.toString() == 'HUFFLEPUFF'}" src="/images/huff.jpg" width="350" />
 	
-	<p th:text="'Has conseguido ' + ${resultado.puntos} + ' puntos.'" /p>
 </div>
+
+<a th:href="@{/}"><button class="botonIniciar">Volver a empezar</button></a>
+
+<h3>Últimos 5 Resultados</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Puntos</th>
+            <th>Clasificación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- For each sobre la lista de resultados -->
+        <tr th:each="resultado : ${ultimosResultados}">
+            <td th:text="${resultado.nombre}" />
+            <td th:text="${resultado.puntos}" />
+            <td th:text="${resultado.clasificacion}" />
+        </tr>
+    </tbody>
+</table>
 
 <style>
 			* {
@@ -32,14 +53,13 @@
 			background-image: url('/images/fondo.jpg');
 	        background-size: 100% 100%;
 	        background-repeat: no-repeat;
-	        height: 100vh;
-	        
+	       
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 35px;
-            margin: 0;
+            gap: 15px;
+            margin: 15px;
         }
         
         img {
@@ -53,11 +73,47 @@
 			text-shadow: 0 0 5px black ;		
 		}
 		
-		h2 {
+		h2, h3 {
 			color: white;
 			font-weight: bold;
 			text-shadow: 0 0 5px black ;	
 		}
+		
+		table {
+	        width: 30%;
+	        border-collapse: collapse;
+	        background-color: white;
+	        box-shadow: 0 0 20px rgba(255, 255, 255, 2);
+  		}
+
+	    th, td {
+	        padding: 10px;
+	        text-align: center;
+	    }
+	
+	    th {
+	        background-color: #4caf50;
+	        color: white;
+	    }
+	
+	    tr:nth-child(even) {
+	        background-color: #f2f2f2;
+	    }
+	    
+	    .botonIniciar {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+			font-weight: bold;
+        }
+
+        .botonIniciar:hover {
+            background-color: rgb(0, 64, 0);
+        }
+        
 </style>
 
 </body>

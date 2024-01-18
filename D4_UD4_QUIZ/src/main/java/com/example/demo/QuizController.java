@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class QuizController {
+	
+    @Autowired
+    private ResultadoRepositorio resultadoRepositorio;
 	
 	@GetMapping("/")
 	public String inicio(HttpSession session, Model model) {
@@ -231,25 +237,43 @@ public class QuizController {
         // y actualizamos la clasificación, accediendo a los puntos:
         resultado.setClasificacion(calcularClasificacion(resultado.getPuntos()));
 
-        return "finalResultado";
+        return "paginaNombre";
     }//pregunta7
-
     
-//    @PostMapping("/finalResultado")
-//    public String finalizar(
-//    		HttpSession session, 
-//    		Model model) {
-//        int puntos = obtenerPuntos(session);
-//        Clasificacion clasificacion = calcularClasificacion(puntos);
-//
-//        Resultado resultado = new Resultado();
-//        resultado.setClasificacion(clasificacion);
-//        resultado.setPuntos(puntos);
-//
-//        model.addAttribute("resultado", resultado);
-//
-//        return "finalResultado";
-//    }//finalizar
+    @PostMapping("/paginaNombre")
+    public String paginaNombre(
+            @RequestParam(name = "nombre") String nombre,
+            HttpSession session,
+            Model model) {
+    	
+        // Obtener el objeto Resultado de la sesión
+        Resultado resultado = obtenerResultado(session);
+
+        // Actualizar el nombre en el objeto Resultado
+        resultado.setNombre(nombre);
+        // Agregar el objeto Resultado actualizado al modelo
+        model.addAttribute("resultado", resultado);
+        
+        // Guardar el resultado en el repositorio
+        resultadoRepositorio.guardarResultado(resultado);
+
+        // Obtener todos los resultados del repositorio
+        List<Resultado> todosLosResultados = resultadoRepositorio.obtenerTodosLosResultados();
+
+        // Seleccionar los últimos 5 resultados (o menos si hay menos de 5)
+        
+        //si la lista tiene > 5 elementos, la posición es size-5, si no, es la posición 0
+        int inicio = todosLosResultados.size() > 5 ? todosLosResultados.size() - 5 : 0;
+        //la posición será la última de la lista.
+        int fin = todosLosResultados.size();
+        List<Resultado> ultimosResultados = todosLosResultados.subList(inicio, fin);
+
+        // Agregar la lista de últimos resultados al modelo
+        model.addAttribute("ultimosResultados", ultimosResultados);
+        
+        return "finalResultado";
+    }
+
     
     private Resultado obtenerResultado(HttpSession session) {
     	Resultado resultado = (Resultado) session.getAttribute("resultado");
